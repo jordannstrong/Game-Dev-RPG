@@ -38,8 +38,7 @@ public class SpecialAttack : MonoBehaviour {
 
 			lastPos = new Vector3 (transform.position.x, transform.position.y + 1, transform.position.z);
 
-			instantiated = (GameObject)Instantiate (ParticlePrefab, 
-	        lastPos, transform.rotation);
+			instantiated = (GameObject)Instantiate (ParticlePrefab, lastPos, transform.rotation);
 
 			StopCoroutine ("Destroy");    // Interrupt in case it's running
 			StartCoroutine ("Destroy");
