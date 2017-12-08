@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SepcialAttack : MonoBehaviour {
+public class SpecialAttack : MonoBehaviour {
 
 	public Fighter player;
 	public KeyCode key;

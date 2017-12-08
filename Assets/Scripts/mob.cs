@@ -92,6 +92,7 @@ public class mob : MonoBehaviour {
 	void OnMouseOver()
 	{
 		player.GetComponent<Fighter> ().opponent = gameObject;
+		player.GetComponent<Fighter> ().countDown = player.GetComponent<Fighter> ().escapeTime;
 	}
 
 	bool IsDead()
