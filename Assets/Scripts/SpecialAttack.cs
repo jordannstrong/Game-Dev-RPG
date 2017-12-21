@@ -39,6 +39,9 @@ public class SpecialAttack : MonoBehaviour {
 			lastPos = new Vector3 (transform.position.x, transform.position.y + 1, transform.position.z);
 
 			instantiated = (GameObject)Instantiate (ParticlePrefab, lastPos, transform.rotation);
+			if (instantiated.tag == "Fire") {
+				instantiated.GetComponent<Rigidbody>().AddForce(transform.forward * 100);
+			}
 
 			StopCoroutine ("Destroy");    // Interrupt in case it's running
 			StartCoroutine ("Destroy");
@@ -50,6 +53,7 @@ public class SpecialAttack : MonoBehaviour {
 			{
 			player.Attack (StunTime, damage_percentage, key);
 			}
+
 			if (GetComponent<Animation>()[player.attack.name].time > 0.9*GetComponent<Animation>()[player.attack.name].length)
 			{
 				inAction = false;
@@ -61,9 +65,11 @@ public class SpecialAttack : MonoBehaviour {
 	IEnumerator Destroy()
 	{
 		yield return new WaitForSeconds(waittime);
-		if (instantiated != null)
-		{
-			Destroy(instantiated); 
+		if (instantiated != null) {
+			Destroy (instantiated); 
+			usemove = true;
+		} else {
+			player.Attack (StunTime, damage_percentage, key);
 			usemove = true;
 		}
 		player.Special_attack = false;

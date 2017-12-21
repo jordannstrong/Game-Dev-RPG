@@ -21,6 +21,7 @@ public class mob : MonoBehaviour {
 	private bool impacted = false;
 	private Fighter opponent;
 	private int stunTime;
+	public Fighter play;
 
 	// Use this for initialization
 	void Start () 
@@ -134,7 +135,6 @@ public class mob : MonoBehaviour {
 			opponent.Get_Hit(damage);
 		}
 	}
-
 
 
 
