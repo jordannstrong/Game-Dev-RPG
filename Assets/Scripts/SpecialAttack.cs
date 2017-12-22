@@ -30,20 +30,28 @@ public class SpecialAttack : MonoBehaviour {
 
 		}	
 
-	  if (Input.GetKeyDown (key) && usemove) 
+
+	  	else if (Input.GetKeyDown (key) && usemove) 
 		{
-            GetComponent<Animation>().Play(special_attack.name);
-            usemove = false;
-			player.resetAttack ();
-			player.Special_attack = true;
-			inAction = true;
+			if (Input.GetKeyDown (KeyCode.Alpha4)) {
+				player.Health += 100;
+				if (player.Health > player.maxHealth) {
+					player.Health = player.maxHealth;
+				}
+			} else {
+				GetComponent<Animation> ().Play (special_attack.name);
+				usemove = false;
+				player.resetAttack ();
+				player.Special_attack = true;
+				inAction = true;
 
-			lastPos = new Vector3 (transform.position.x, transform.position.y + 1, transform.position.z);
+				lastPos = new Vector3 (transform.position.x, transform.position.y + 1, transform.position.z);
 
-			instantiated = (GameObject)Instantiate (ParticlePrefab, lastPos, transform.rotation);
+				instantiated = (GameObject)Instantiate (ParticlePrefab, lastPos, transform.rotation);
 
-			StopCoroutine ("Destroy");    // Interrupt in case it's running
-			StartCoroutine ("Destroy");
+				StopCoroutine ("Destroy");    // Interrupt in case it's running
+				StartCoroutine ("Destroy");
+			}
 		}
 
 		if (inAction) 
