@@ -21,6 +21,7 @@ public class mob : MonoBehaviour {
 	private bool impacted = false;
 	private Fighter opponent;
 	private int stunTime;
+	public GameObject gt;
 
 	// Use this for initialization
 	void Start () 
@@ -32,28 +33,29 @@ public class mob : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
-		if (IsDead() == false) 
-		{
-			if(!inRange(chaseRange)) return;
-			if(stunTime<=0)
-			{
-			if (!inRange (range)) 
-			{
+		if (IsDead () == false) {
+			if (!inRange (chaseRange))
+				return;
+			if (stunTime <= 0) {
+				if (!inRange (range)) {
 					chase ();
-			} else {
+				} else {
 					//animation.CrossFade (idel.name);
-			attack();
-				if (GetComponent<Animation>()[attacks.name].time > 0.9*GetComponent<Animation>()[attacks.name].length)
-				{
-					impacted = false;
+					attack ();
+					if (GetComponent<Animation> () [attacks.name].time > 0.9 * GetComponent<Animation> () [attacks.name].length) {
+						impacted = false;
+					}
 				}
+			} else {
 			}
-		   }
-			else
-			{
+		} else {
+			staydead ();
+
+			if (this.gameObject.name == "Boss") {
+				gt.SetActive (true);
+				Time.timeScale = 0;
 			}
-		} else
-		  staydead ();
+		}
 	}
 
 	public void GetStun(int seconds)

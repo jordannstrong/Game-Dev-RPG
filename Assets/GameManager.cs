@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-	public GameObject boss1;
-	public GameObject boss2;
-	public GameObject boss3;
+	public bool boss1 = true;
+	public bool boss2 = true;
+	public bool boss3 = true;
+	public GameObject final;
 
 	// Use this for initialization
 	void Start () {
-		
+		boss1 = true;
+		boss2 = true;
+		boss3 = true;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		if (GameObject.Find("zippermouth_c_PF (2)") != null && GameObject.Find("spider_myOldOne (1)") != null && GameObject.Find("wolf_02") != null)
+		if (!(boss1 || boss2 || boss3))
 		{
-			GameObject.Find ("portal").SetActive (true);
+			final.SetActive (true);
 		}
 	}
 }
