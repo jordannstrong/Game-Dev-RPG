@@ -19,6 +19,9 @@ public class Fighter : MonoBehaviour {
 	public float escapeTime = 10;
 	public float countDown;
 
+	void Awake() {
+		DontDestroyOnLoad (this.gameObject);
+	}
 
 	// Use this for initialization
 	void Start () 

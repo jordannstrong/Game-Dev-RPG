@@ -8,7 +8,20 @@ public class LevelSystem : MonoBehaviour {
 	public int exp;
 	public int expNeeded;
 	public Fighter Player;
+	private bool created = false;
 
+	void Awake() {
+		if (!created)
+		{
+			DontDestroyOnLoad(this.gameObject);
+			created = true;
+		}
+
+		else
+		{
+			Destroy(this.gameObject);
+		}
+	}
 	// Use this for initialization
 	void Start () 
 	{
