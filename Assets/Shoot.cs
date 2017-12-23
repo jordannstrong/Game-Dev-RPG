@@ -3,14 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Shoot : MonoBehaviour {
-
+    public float speed;
 	// Use this for initialization
 	void Start () {
-		//Transform.
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        GetComponent<Rigidbody>().velocity = transform.forward * speed;
+    }
 }

@@ -4,14 +4,12 @@ using System.Collections;
 public class Chase : MonoBehaviour {
 	private GameObject player;
 	private float distance;
-	//public Transform initialPosition;
 	public float moveSpeed;
 	public float visionRange;
 
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
-		//transform.position = initialPosition.position;
 	}
 	
 	// Update is called once per frame

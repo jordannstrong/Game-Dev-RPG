@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour {
 	public GUIText DeathNote;
 	public Texture2D Death;
 	public LevelSystem Playerlevel;
+    //public LevelSystem Familiarlevel;
 	public Rect framePosition;
 	public Fighter Player;
 	public float horizontalDistance;
