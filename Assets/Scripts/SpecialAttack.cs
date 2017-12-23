@@ -10,6 +10,7 @@ public class SpecialAttack : MonoBehaviour {
     public double damage_percentage;
 	public bool inAction;
 	public GameObject ParticlePrefab;
+    public GameObject HealingParticles;
 	private GameObject instantiated;
 	private Vector3 lastPos;
 	private bool usemove = true;
@@ -28,31 +29,38 @@ public class SpecialAttack : MonoBehaviour {
 		{ 
 			lastPos = transform.position; 
 
-		}	
-
-
-	  	else if (Input.GetKeyDown (key) && usemove) 
-		{
-			if (Input.GetKeyDown (KeyCode.Alpha4)) {
-				player.Health += 100;
-				if (player.Health > player.maxHealth) {
-					player.Health = player.maxHealth;
-				}
-			} else {
-				GetComponent<Animation> ().Play (special_attack.name);
-				usemove = false;
-				player.resetAttack ();
-				player.Special_attack = true;
-				inAction = true;
-
-				lastPos = new Vector3 (transform.position.x, transform.position.y + 1, transform.position.z);
-
-				instantiated = (GameObject)Instantiate (ParticlePrefab, lastPos, transform.rotation);
-
-				StopCoroutine ("Destroy");    // Interrupt in case it's running
-				StartCoroutine ("Destroy");
-			}
 		}
+
+        else if (Input.GetKeyDown(key) && usemove)
+            {
+               if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                lastPos = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+                instantiated = (GameObject)Instantiate(HealingParticles, lastPos, transform.rotation);
+                player.Health += 100;
+                if (player.Health > player.maxHealth)
+                {
+                    player.Health = player.maxHealth;
+                }
+                StopCoroutine("Destroy");    // Interrupt in case it's running
+                StartCoroutine("Destroy");
+            }
+            else
+            {
+                GetComponent<Animation>().Play(special_attack.name);
+                usemove = false;
+                player.resetAttack();
+                player.Special_attack = true;
+                inAction = true;
+                
+                lastPos = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+                
+                instantiated = (GameObject)Instantiate(ParticlePrefab, lastPos, transform.rotation);
+                
+                StopCoroutine("Destroy");    // Interrupt in case it's running
+                StartCoroutine("Destroy");
+                          }
+        }
 
 		if (inAction) 
 		{
