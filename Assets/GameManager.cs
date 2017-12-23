@@ -22,5 +22,8 @@ public class GameManager : MonoBehaviour {
 		{
 			final.SetActive (true);
 		}
+		if (Input.GetKey ("escape")) {
+			Application.Quit ();
+		}
 	}
 }
